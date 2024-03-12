@@ -1,0 +1,26 @@
+{
+  "kassel": {
+    "total_global_irradiation": 1074.0931064063366
+  },
+  "stuttgart": {
+    "total_global_irradiation": 1450.9362708611206
+  },
+  "muenchen": {
+    "total_global_irradiation": 1600.4538731634275
+  },
+  "berlin": {
+    "total_global_irradiation": 1232.4904026657678
+  },
+  "frankfurt": {
+    "total_global_irradiation": 1206.3849032747269
+  },
+  "hamburg": {
+    "total_global_irradiation": 1195.5960795091567
+  },
+  "bonn": {
+    "total_global_irradiation": 1268.1938708747928
+  },
+  "leipzig": {
+    "total_global_irradiation": 1124.7631785284693
+  }
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Energy Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+
+    <h1 class="mb-4">Solar Prediction</h1>
+
+    <form action="/" method="post">
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <select class="form-control" name="location" id="location">
+                <option value="kassel">Kassel</option>
+                <option value="stuttgart">Stuttgart</option>
+                <option value="muenchen">München</option>
+                <option value="berlin">Berlin</option>
+                <option value="frankfurt">Frankfurt</option>
+                <option value="hamburg">Hamburg</option>
+                <option value="bonn">Bonn</option>
+                <option value="leipzig">Leipzig</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="area_sqm">Fläche der Solaranlage (m²):</label>
+            <input type="number" class="form-control" name="area_sqm" required step="0.01">
+        </div>
+
+        <div class="form-group">
+            <label for="ausrichtungswinkel">Ausrichtungswinkel zwischen -180° und 180°:</label>
+            <input type="number" class="form-control" name="ausrichtungswinkel" required>
+        </div>
+
+        <div class="form-group">
+            <label for="neigungswinkel">Neigungswinkel zwischen 0° und 90°:</label>
+            <input type="number" class="form-control" name="neigungswinkel" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Berechnen</button>
+    </form>
+
+    {% if error %}
+    <div class="mt-4 alert alert-danger">
+        <h3>Fehler</h3>
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    {% if result %}
+    <div class="mt-4 alert alert-success">
+        <h3 class="mb-3">Ergebnis der Energievorhersage</h3>
+        <p class="lead">Vorhersage der Energieerzeugung für die nächsten 12 Monate:</p>
+        <p class="display-4">{{ result }} kWh</p>
+    </div>
+    {% endif %}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
