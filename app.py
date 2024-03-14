@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import os
 import json
-from lib_py.solar_prediction_alt import SolarPredictionModel
+from lib_py.solar_prediction import SolarPredictionModel
 
 app = Flask(__name__)
 
