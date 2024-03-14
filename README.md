@@ -14,3 +14,6 @@
 4. Nutze `SolarPredictionModel` aus `lib_py.solar_prediction` für Training und Prediction
 5. Nutze `SolarPredictionModel` in `app.py` für Schnittstelle zu Solarvorhersage-Anwendung
 6. Nutze `index.html` für Webinterface Solarvorhersage-Anwendung
+
+## Link Webanwendung
+https://evelinedura.eu.pythonanywhere.com
