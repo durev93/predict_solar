@@ -37,11 +37,11 @@ class SolarPredictionModel:
         mean = self.monthly_mean[date.month]
         return np.random.normal(mean, self.std)
 
-    def load_json_data(self, json_data_path):
+    def _load_json_data(self, json_data_path):
         with open(json_data_path, "r") as file:
             self.json_data = json.load(file)
 
-    def find_value(self, ausrichtungswinkel, neigungswinkel):
+    def _find_value(self, ausrichtungswinkel, neigungswinkel):
         if -180 <= ausrichtungswinkel <= 180 and 0 <= neigungswinkel <= 90:
             ausrichtungswinkel = abs(ausrichtungswinkel)
             rounded_ausrichtungswinkel = round(ausrichtungswinkel / 10) * 10
@@ -53,7 +53,7 @@ class SolarPredictionModel:
             return None
 
     def calculate_energy_production(self, area, total_global_irradiation, ausrichtungswinkel, neigungswinkel):
-        value_percent = self.find_value(ausrichtungswinkel, neigungswinkel)
+        value_percent = self._find_value(ausrichtungswinkel, neigungswinkel)
         if value_percent is not None:
             return area * total_global_irradiation * (value_percent / 100.0) * 0.22
         else:
@@ -85,7 +85,7 @@ def main():
     with open(PARAMS_FILEPATH, "w") as f:
         json.dump(all_location_params, f, indent=2)
 
-    solar_model.load_json_data(DATA_PATH)
+    solar_model._load_json_data(DATA_PATH)
     
     area = 1
 

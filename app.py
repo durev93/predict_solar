@@ -10,7 +10,7 @@ DATA_PATH = os.path.join(dirname, "data", "data.json")
 PARAMS_FILEPATH = os.path.join(dirname, "ml_model", "params.json")
 
 solar_model = SolarPredictionModel()
-solar_model.load_json_data(DATA_PATH)
+solar_model._load_json_data(DATA_PATH)
 
 with open(PARAMS_FILEPATH, "r") as f:
     all_location_params = json.load(f)
