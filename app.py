@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import os
 import json
-from lib_py.solar_prediction import SolarPredictionModel
+from lib_py.solar_prediction_alt import SolarPredictionModel
 
 app = Flask(__name__)
 
@@ -20,18 +20,18 @@ with open(PARAMS_FILEPATH, "r") as f:
 def index():
     if request.method == "POST":
         location = request.form["location"]
-        area_sqm = float(request.form["area_sqm"])
+        area = float(request.form["area"])
         ausrichtungswinkel = float(request.form["ausrichtungswinkel"])
         neigungswinkel = float(request.form["neigungswinkel"])
 
         params = all_location_params[location]
 
         energy_production = solar_model.calculate_energy_production(
-            area_sqm, params["total_global_irradiation"], ausrichtungswinkel, neigungswinkel
+            area, params["total_global_irradiation"], ausrichtungswinkel, neigungswinkel
         )
 
         if energy_production is not None:
-            result = f"{energy_production:.2f}" #f"Energieerzeugnis für die nächsten 12 Monate in {location} bei einer Solarfläche von {area_sqm} m²: {energy_production:.2f} kWh"
+            result = f"{energy_production:.2f}"
             return render_template("index.html", result=result)
         else:
             error = f"Ungültige Winkelwerte. Der Ausrichtungswinkel muss im Bereich zwischen -180° und 180° liegen, der Neigungswinkel im Bereich zwischen 0° und 90°."
@@ -42,3 +42,5 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+

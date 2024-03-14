@@ -6,29 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solar Energy Prediction</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://cdn.pixabay.com/photo/2017/03/13/07/34/photovoltaic-2138992_1280.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Hintergrundfarbe des Formularcontainers */
+            padding: 20px; /* Innenabstand des Containers */
+            border-radius: 10px; /* Abrundung der Ecken */
+        }
+        .btn-dunkelblau {
+            background-color: #004481; /* Dunkelblaue Hintergrundfarbe */
+            border-color: #004481; /* Dunkelblaue Rahmenfarbe */
+            color: white;
+        }
+    </style>
 </head>
 <body class="container mt-5">
 
     <h1 class="mb-4">Solar Prediction</h1>
+    <h2 class="mb-3" style="font-size: 1rem;">Rechner zur Vorhersage des Energieertrags für Ihre Solaranlage beruhend auf Wahrscheinlichkeitsberechnungen</h2>
 
     <form action="/" method="post">
         <div class="form-group">
-            <label for="location">Location:</label>
+            <label for="location">Ort:</label>
             <select class="form-control" name="location" id="location">
-                <option value="kassel">Kassel</option>
-                <option value="stuttgart">Stuttgart</option>
-                <option value="muenchen">München</option>
                 <option value="berlin">Berlin</option>
+                <option value="bonn">Bonn</option>
                 <option value="frankfurt">Frankfurt</option>
                 <option value="hamburg">Hamburg</option>
-                <option value="bonn">Bonn</option>
+                <option value="kassel">Kassel</option>
                 <option value="leipzig">Leipzig</option>
+                <option value="muenchen">München</option>
+                <option value="stuttgart">Stuttgart</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="area_sqm">Fläche der Solaranlage (m²):</label>
-            <input type="number" class="form-control" name="area_sqm" required step="0.01">
+            <label for="area">Fläche der Solaranlage (m²):</label>
+            <input type="number" class="form-control" name="area" required step="0.01">
         </div>
 
         <div class="form-group">
@@ -41,7 +60,7 @@
             <input type="number" class="form-control" name="neigungswinkel" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Berechnen</button>
+        <button type="submit" class="btn btn-dunkelblau">Berechnen</button>
     </form>
 
     {% if error %}
@@ -58,7 +77,7 @@
         <p class="display-4">{{ result }} kWh</p>
     </div>
     {% endif %}
-
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
