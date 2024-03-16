@@ -14,13 +14,13 @@
             background-attachment: fixed;
         }
         .container {
-            background-color: rgba(255, 255, 255, 0.8); /* Hintergrundfarbe des Formularcontainers */
-            padding: 20px; /* Innenabstand des Containers */
-            border-radius: 10px; /* Abrundung der Ecken */
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
         }
         .btn-dunkelblau {
-            background-color: #004481; /* Dunkelblaue Hintergrundfarbe */
-            border-color: #004481; /* Dunkelblaue Rahmenfarbe */
+            background-color: #004481;
+            border-color: #004481;
             color: white;
         }
     </style>
@@ -65,8 +65,8 @@
 
     {% if error %}
     <div class="mt-4 alert alert-danger">
-        <h3>Fehler</h3>
-        <p>{{ error }}</p>
+        <h3 class="mb-3">Fehler</h3>
+        <p class="mb-3">{{ error }}</p>
     </div>
     {% endif %}
 
@@ -74,7 +74,7 @@
     <div class="mt-4 alert alert-success">
         <h3 class="mb-3">Ergebnis der Energievorhersage</h3>
         <p class="lead">Vorhersage der Energieerzeugung für die nächsten 12 Monate:</p>
-        <p class="display-4">{{ result }} kWh</p>
+        <p class="display-4">{{ "%.2f"|format(result) }} kWh</p>
     </div>
     {% endif %}
     

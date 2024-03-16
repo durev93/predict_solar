@@ -98,9 +98,9 @@ def main():
         )
 
         if energy_production is not None:
-            print(f"Energieerzeugnis für die nächsten 12 Monate in {location} bei einer Solarfläche von {area} m2: {energy_production:.2f} kWh")
+            print(f"{location}: {energy_production:.2f} kWh")
         else:
-            print(f"Ungültige Winkelwerte für {location}. Der Ausrichtungswinkel muss im Bereich zwischen -180° und 180° liegen, der Neigungswinkel im Bereich zwischen 0° und 90°.")
+            print(f"Ungültige Winkelwerte.")
 
 if __name__ == "__main__":
     main()

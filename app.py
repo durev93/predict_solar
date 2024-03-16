@@ -31,7 +31,7 @@ def index():
         )
 
         if energy_production is not None:
-            result = f"{energy_production:.2f}"
+            result = energy_production
             return render_template("index.html", result=result)
         else:
             error = f"Ungültige Winkelwerte. Der Ausrichtungswinkel muss im Bereich zwischen -180° und 180° liegen, der Neigungswinkel im Bereich zwischen 0° und 90°."
