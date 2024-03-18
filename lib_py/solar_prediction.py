@@ -18,7 +18,7 @@ class SolarPredictionModel:
     def fit(self, filepath, locations):
         for location in locations:
             df = self._import_data(filepath, location)
-            self._set_global_irradiation_params(df)
+            self._set_params(df)
 
     def _import_data(self, filepath, location):
         file_name = f"global_irradiation_{location}.csv"
@@ -28,12 +28,12 @@ class SolarPredictionModel:
         self.current_location = location
         return df
 
-    def _set_global_irradiation_params(self, df):  
+    def _set_params(self, df):  
         self.monthly_mean = df.groupby("month")["H(h)_m"].mean().to_dict()
         self.monthly_std = df.groupby("month")["H(h)_m"].std().to_dict()
         self.std = df["H(h)_m"].std()
 
-    def predict_global_irradiation(self, date: date) -> float:
+    def predict(self, date: date) -> float:
         mean = self.monthly_mean[date.month]
         return np.random.normal(mean, self.std)
 
@@ -41,7 +41,7 @@ class SolarPredictionModel:
         with open(json_data_path, "r") as file:
             self.json_data = json.load(file)
 
-    def _find_value(self, ausrichtungswinkel, neigungswinkel):
+    def _get_value(self, ausrichtungswinkel, neigungswinkel):
         if -180 <= ausrichtungswinkel <= 180 and 0 <= neigungswinkel <= 90:
             ausrichtungswinkel = abs(ausrichtungswinkel)
             rounded_ausrichtungswinkel = round(ausrichtungswinkel / 10) * 10
@@ -53,7 +53,7 @@ class SolarPredictionModel:
             return None
 
     def calculate_energy_production(self, area, total_global_irradiation, ausrichtungswinkel, neigungswinkel):
-        value_percent = self._find_value(ausrichtungswinkel, neigungswinkel)
+        value_percent = self._get_value(ausrichtungswinkel, neigungswinkel)
         if value_percent is not None:
             return area * total_global_irradiation * (value_percent / 100.0) * 0.22
         else:
@@ -76,7 +76,7 @@ def main():
 
         for month_offset in range(12):
             current_date = today.replace(month=(today.month + month_offset) % 12 + 1)
-            prediction = solar_model.predict_global_irradiation(current_date)
+            prediction = solar_model.predict(current_date)
             total_global_irradiation += prediction
 
         location_params = {"total_global_irradiation": total_global_irradiation}
